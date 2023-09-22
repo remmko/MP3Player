@@ -1,0 +1,25 @@
+[
+    {
+        "autor":"System Of A Down",
+        "songname": "Lonley Day",
+        "route": "music/soad/ld.mp3"
+    },
+
+    {
+        "autor":"System Of A Down",
+        "songname": "Toxycity",
+        "route": "music/soad/t.mp3"
+    },
+
+    {
+        "autor":"System Of A Down",
+        "songname": "Question",
+        "route": "music/soad/q.mp3"
+    },
+
+    {
+        "autor":"System Of A Down",
+        "songname": "Aerials",
+        "route": "music/soad/a.mp3"
+    }
+]

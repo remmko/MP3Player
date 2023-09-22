@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #d44242;
+}
+
+.mainmenu{
+    background-color: #261D1D;
+    opacity: 0.95;
+    height: 100px;
+    font-size: 30px;
+    color: wheat;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 2px 
+    solid black;
+    text-align: right;
+}
+
+
+.mainmenu li:hover{
+    font-size: 26px;
+}
+
+.mainmenu li{
+    padding-top: 25px;
+    padding-right: 30px;
+    display: inline-block;
+}
+
+.content::-webkit-scrollbar{
+    color: #261D1D;
+    width: 7px;
+}
+.content::-webkit-scrollbar-button{
+    width: 2px;
+}
+.content::-webkit-scrollbar-thumb{
+    background-color: #261D1D;
+}
+.content {
+    overflow:auto;
+    background-color: #261D1D;
+    opacity: 0.95;
+    height: 726px;
+    float: right;
+    border-right: 1px solid black;
+    margin-top: 100px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+
+.content td {
+    padding-top: 30px;
+    padding-left: 200px;
+    font-size: 20px;
+    color: wheat;
+    font-weight: normal;
+}
+
+.content td:hover{
+    font-size: 21px;
+}
+
+.navigation {
+    background-color: #261D1D;
+    opacity: 0.95;
+    height: 726px;
+    width: 20%;
+    border: 2px;
+    border-right: 1px solid black;
+    margin-top: 100px;
+
+}
+
+.navigation ul {
+    color: wheat;
+    font-size: 25px;
+}
+
+.navigation li {
+    font-family: 'Times New Roman', Times, serif;
+    padding-top: 15px;
+    padding-left: 10px
+}
+
+.navigation li:hover {
+    filter: brightness(120%);
+    font-size: 26px;
+}
+
+.player {
+    background-color: #261D1D;
+    opacity: 0.95;
+    height: 120px;
+    font-size: 20px;
+    color: #f5deb3;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid black;
+   
+}
+
+#playercontent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.playcontrol {
+    margin-top: -50px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.playcontrol img{
+    width: 20px;
+    height: 20px;
+}
+
+.song{
+    width: 400px;
+}
+
+.controls {
+    width: 15px;
+    margin-left: 20px;
+}
+
+.controls:hover {
+    filter: brightness(120%);
+
+    width: 16px;
+}
+
+.stop {
+    width: 20px;
+    padding-left: 20px;
+}
+
+.stop:hover {
+    filter: brightness(120%);
+    width: 18px;
+}
+
+
+.start {
+    width: 20px;
+    padding-left: 20px;
+}
+
+.start:hover {
+    filter: brightness(120%);
+    width: 21px;
+}
+
+.songs{
+    padding-top: 10px;
+    margin-left: 200px;
+}
+
+.songs h4{
+    margin-top: 20px;
+}
+
+.currentsong{
+    width: 300px;
+    padding-top: 30px;
+    margin-left: 30px;
+   
+    
+}
+
+#timebar{
+    width: 600px;
+    border-radius: 10px;
+    margin-top: 20px;
+
+}
+
+#timebar input{
+    width: 100%;
+  
+}
+
+#currentTime{
+    display: flex;
+    justify-content: flex-end;
+    width: 40px;
+    margin-right: 30px;
+    margin-top: -25px;
+    font-size:15px;
+}
+
+
+#duration{
+    display: flex;
+    justify-content: flex-end;
+    width: 40px;
+    margin-top: -40px;
+    margin-left: 560px;
+    font-size: 15px;
+}

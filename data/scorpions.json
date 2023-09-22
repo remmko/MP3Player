@@ -1,0 +1,25 @@
+[
+    {
+        "autor":"Scorpions",
+        "songname": "Still Loving You",
+        "route": "music/scorpions/Scorpions-Still_Loving_You.mp3"
+    },
+
+    {
+        "autor":"Scorpions",
+        "songname": "Send Me An Angel",
+        "route": "music/scorpions/sma.mp3"
+    },
+
+    {
+        "autor":"Scorpions",
+        "songname": "Humanity",
+        "route": "music/scorpions/h.mp3"
+    },
+
+    {
+        "autor":"Scorpions",
+        "songname": "Always Somethere",
+        "route": "music/scorpions/as.mp3"
+    }
+]

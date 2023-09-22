@@ -1,0 +1,25 @@
+[
+    {
+        "autor":"Metallica",
+        "songname": "For Whom The Bell Tolls",
+        "route": "music/metallica/f.mp3"
+    },
+
+    {
+        "autor":"Metallica",
+        "songname": "The Day That Never Comes",
+        "route": "music/metallica/t.mp3"
+    },
+
+    {
+        "autor":"Metallica",
+        "songname": "Enter Sandman",
+        "route": "music/metallica/e.mp3"
+    },
+
+    {
+        "autor":"Metallica",
+        "songname": "Fade To Black",
+        "route": "music/metallica/b.mp3"
+    }
+]
