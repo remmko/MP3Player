@@ -1,25 +1,21 @@
-[
-    {
-        "autor":"Scorpions",
-        "songname": "Still Loving You",
-        "route": "music/scorpions/Scorpions-Still_Loving_You.mp3"
-    },
-
-    {
-        "autor":"Scorpions",
-        "songname": "Send Me An Angel",
-        "route": "music/scorpions/sma.mp3"
-    },
-
-    {
-        "autor":"Scorpions",
-        "songname": "Humanity",
-        "route": "music/scorpions/h.mp3"
-    },
-
-    {
-        "autor":"Scorpions",
-        "songname": "Always Somethere",
-        "route": "music/scorpions/as.mp3"
-    }
-]
+[{
+    "autor": "Scorpions",
+    "songname": "Still Loving You",
+    "route": "music\/scorpions\/Scorpions-Still_Loving_You.mp3"
+}, {
+    "autor": "Scorpions",
+    "songname": "Send Me An Angel",
+    "route": "music\/scorpions\/sma.mp3"
+}, {
+    "autor": "Scorpions",
+    "songname": "Humanity",
+    "route": "music\/scorpions\/h.mp3"
+}, {
+    "autor": "Scorpions",
+    "songname": "Always Somethere",
+    "route": "music\/scorpions\/as.mp3"
+}, {
+    "autor": "Scorpions",
+    "songname": "No one like you",
+    "route": "music\/scorpions\/Scorpions_-_No_One_Like_You.mp3"
+}]

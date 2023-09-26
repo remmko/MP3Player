@@ -1,214 +1,220 @@
 * {
     margin: 0;
     padding: 0;
-}
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #8d8a8a;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Шапка */
+  .mainmenu ul {
+    list-style: none;
+    display: flex;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .mainmenu li {
+    margin-right: 20px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  #song-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .songs {
+    flex-basis: calc(50% - 10px); /* Разделите контейнер на две колонки с отступом */
+    padding: 10px;
+  }
+  
+  .songs tr {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
-body {
-    background-color: #d44242;
-}
-
-.mainmenu{
-    background-color: #261D1D;
-    opacity: 0.95;
-    height: 100px;
-    font-size: 30px;
-    color: wheat;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    border-bottom: 2px 
-    solid black;
-    text-align: right;
-}
-
-
-.mainmenu li:hover{
-    font-size: 26px;
-}
-
-.mainmenu li{
-    padding-top: 25px;
-    padding-right: 30px;
-    display: inline-block;
-}
-
-.content::-webkit-scrollbar{
-    color: #261D1D;
-    width: 7px;
-}
-.content::-webkit-scrollbar-button{
-    width: 2px;
-}
-.content::-webkit-scrollbar-thumb{
-    background-color: #261D1D;
-}
-.content {
-    overflow:auto;
-    background-color: #261D1D;
-    opacity: 0.95;
-    height: 726px;
-    float: right;
-    border-right: 1px solid black;
-    margin-top: 100px;
-    width: 80%;
-    margin: auto;
+  .songs tr :hover{
+    background-color: #585858;
+  }
+  
+  .songs td {
+    padding: 10px;
     text-align: center;
-}
-
-
-.content td {
-    padding-top: 30px;
-    padding-left: 200px;
-    font-size: 20px;
+    background-color: #2b2a2a;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: wheat;
-    font-weight: normal;
-}
-
-.content td:hover{
-    font-size: 21px;
-}
-
-.navigation {
-    background-color: #261D1D;
-    opacity: 0.95;
-    height: 726px;
-    width: 20%;
-    border: 2px;
-    border-right: 1px solid black;
-    margin-top: 100px;
-
-}
-
-.navigation ul {
+    font-weight: bold;
+  }
+  
+  .songs img {
+    width: 150px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  .songs tr:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .songs img:hover {
+    transform: scale(1.05);
+  }
+  
+  #songlist {
+    flex-basis: calc(50% - 10px); /* Разделите контейнер на две колонки с отступом */
+    padding: 10px;
+    border-radius: 5px;
     color: wheat;
-    font-size: 25px;
-}
+  }
+  
+  #songlist th {
+    background-color: #2b2a2a;
+    color: wheat;
+    padding: 10px;
+  }
+  
+  #songlist td {
+    padding: 10px;
+    background-color: #2b2a2a;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-.navigation li {
-    font-family: 'Times New Roman', Times, serif;
-    padding-top: 15px;
-    padding-left: 10px
-}
+  #songlist tr :hover{
+    background-color: #585858;
 
-.navigation li:hover {
-    filter: brightness(120%);
-    font-size: 26px;
-}
-
-.player {
-    background-color: #261D1D;
-    opacity: 0.95;
-    height: 120px;
-    font-size: 20px;
-    color: #f5deb3;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    border-top: 1px solid black;
-   
-}
-
-#playercontent{
+  }
+  
+  
+  .navigation ul {
+    list-style: none;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-}
-
-.playcontrol {
-    margin-top: -50px;
-    width: 100px;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .navigation li {
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Плеер */
+  .player {
+    background-color:#2b2a2a;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+    color: wheat;
+    font-weight: bold;
+  }
+  
+  .currentsong{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+  }
 
-}
-
-.playcontrol img{
+  .currentsong span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  
+  .playcontrol img {
     width: 20px;
     height: 20px;
-}
-
-.song{
-    width: 400px;
-}
-
-.controls {
-    width: 15px;
-    margin-left: 20px;
-}
-
-.controls:hover {
-    filter: brightness(120%);
-
-    width: 16px;
-}
-
-.stop {
-    width: 20px;
-    padding-left: 20px;
-}
-
-.stop:hover {
-    filter: brightness(120%);
-    width: 18px;
-}
-
-
-.start {
-    width: 20px;
-    padding-left: 20px;
-}
-
-.start:hover {
-    filter: brightness(120%);
-    width: 21px;
-}
-
-.songs{
-    padding-top: 10px;
-    margin-left: 200px;
-}
-
-.songs h4{
-    margin-top: 20px;
-}
-
-.currentsong{
-    width: 300px;
-    padding-top: 30px;
-    margin-left: 30px;
-   
-    
-}
-
-#timebar{
-    width: 600px;
-    border-radius: 10px;
-    margin-top: 20px;
-
-}
-
-#timebar input{
-    width: 100%;
+    cursor: pointer;
+    margin: 0 10px;
+  }
   
-}
+  .volume img {
+    width: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
 
-#currentTime{
+  .volume{
+    width: 50px;
+    margin-left: 1000px;
     display: flex;
-    justify-content: flex-end;
-    width: 40px;
-    margin-right: 30px;
-    margin-top: -25px;
-    font-size:15px;
+    margin-top: -15px;
 }
-
-
-#duration{
+  
+  .volume input[type="range"] {
+    width: 100px;
+  }
+  
+  #timebar {
     display: flex;
-    justify-content: flex-end;
-    width: 40px;
-    margin-top: -40px;
-    margin-left: 560px;
-    font-size: 15px;
-}
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  #bar {
+    width: 100%;
+  }
+
+  #duration{
+    margin-left: 10px;
+  }
+
+  #currentTime{
+    margin-right: 10px;
+  }
+
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  
+  /* Медиазапросы для отзывчивого дизайна */
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+    .mainmenu ul,
+    .navigation ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    .mainmenu li,
+    .navigation li {
+      margin: 10px 0;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .songs td {
+      font-size: 14px;
+    }
+  }
+  

@@ -1,0 +1,23 @@
+[
+    {
+        "name":"Metallica Playlsit",
+        "src":"data/metallica.json",
+        "imgSrc":"img/metalica.jpeg"
+    },
+    {
+        "name":"System of a Down Playlist",
+        "src":"data/soad.json",
+        "imgSrc":"img/soad.jpeg"
+    },
+    {
+        "name":"Scorpions Playlist",
+        "src":"data/scorpions.json",
+        "imgSrc":"img/img.jpeg"
+    },
+    {
+        "name":"Rammstein Playlist",
+        "src":"data/rammstein.json",
+        "imgSrc":"img/rammstein.jpeg"
+    }
+   
+]
