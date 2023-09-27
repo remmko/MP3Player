@@ -40,11 +40,7 @@ if (isset($_FILES) && $_FILES["userfile"]["error"]== UPLOAD_ERR_OK){
     file_put_contents("data/songs.json", json_encode($allsongs));
 }
 
-/**$songs = json_decode(file_get_contents($songlist, true));
-$songs[songs.length]["autor"]=$_POST["autor"];
-$songs[songs.length]["songname"] = $_POST["songname"];
-$songs[songs.length]["route"] = $name;
-file_put_contents($songlist, json_encode($songs));**/
+
 
 echo "true";
 

@@ -1,10 +1,8 @@
 <?php
-    $scorpions = file_get_contents("data/scorpions.json");
-    $metallica = file_get_contents("data/metallica.json");
-    $rammstein = file_get_contents("data/rammstein.json");
-    $soad = file_get_contents("data/soad.json");
+    include "test.php";
     $allsongs = file_get_contents("data/songs.json");
     $playlists = file_get_contents("data/playlists.json");
+    
 ?>
 
 
@@ -26,9 +24,7 @@
             <li>Contact</li>
         </ul>
     </div>
-
-    
-    
+    <div class="hidden"></div>
 
     <div class="content">
         <div id="song-container">
@@ -78,47 +74,45 @@
                 <span id= "duration">00:00</span> 
             </div>
         </div>
-
-
-       
-       
     </div>
 
 
-    <script>
+   
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
         var audio = new Audio();
         audio.preload = "auto";
         let playlists;
         let song;
+
         window.addEventListener('load', () => {
             playlists = JSON.parse(<?php echo json_encode($playlists)?>);
             showPlayer();
-         });
+        });
 
 
-        function playing(i){
-            if(playlists[i].src == "data/scorpions.json"){
-                song = JSON.parse(<?php echo json_encode($scorpions)?>);
-                showSongs();
-            }else if (playlists[i].src == "data/metallica.json"){
-                song = JSON.parse(<?php echo json_encode($metallica)?>);
-                showSongs();
-            }else if (playlists[i].src=="data/rammstein.json"){
-                song = JSON.parse(<?php echo json_encode($rammstein)?>);
-                showSongs();
-            }else if(playlists[i].src=="data/soad.json"){
-                song = JSON.parse(<?php echo json_encode($soad)?>);
-                showSongs()
-            }
+        function playing(i) {
+            var src = playlists[i].src;
+            $.ajax({
+                type: 'GET',              
+                url: 'test.php?src=' + src, 
+                success: function(data) {
+                }
+            });
+
+            song = JSON.parse(<?php include "test.php"; echo json_encode($song)?>);
+
         }
-      
-
+        
+        
+    
         function playAllSongs(){
             song = JSON.parse(<?php echo json_encode($allsongs)?>);
             showAllSongs()
 
         }
-
     </script>
 </body>
 </html>

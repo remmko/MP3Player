@@ -7,7 +7,6 @@ function showSongs(){
     if(document.getElementById("songlist")){
         var table = document.getElementById("songlist");
         table.remove();
-        console.log(true);
     }
     
     var content = document.getElementById("song-container");
