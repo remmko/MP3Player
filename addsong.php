@@ -1,21 +1,12 @@
 <?php
+$playlists = file_get_contents("data/playlists.json");
+$uploaddir = "music/";
 
 if (isset($_POST["submit"])) {
-    if (isset($_POST["ans"])) {
-    $answer = $_POST['ans'];
-       if ($answer == "ans1") {
-           $uploaddir="music/metallica/";
-           $songlist = "data/metallica.json";
-       } elseif($answer == "ans2") {
-           $uploaddir = "music/soad/";
-           $songlist = "data/soad.json";
-       }elseif($answer == "ans3"){
-            $uploaddir = "music/rammstein/";
-            $songlist = "data/rammstein.json";
-       }elseif($answer == "ans4"){
-            $uploaddir = "music/scorpions/";
-            $songlist = "data/scorpions.json";
-       }    
+
+    if (isset($_POST["playlist"])) {
+    $answer = $_POST['playlist'];
+    $songlist = $answer;
 
     }else{
         echo "Please select playlist";
@@ -38,12 +29,12 @@ if (isset($_FILES) && $_FILES["userfile"]["error"]== UPLOAD_ERR_OK){
     $allsongs[] = $newSong;
     file_put_contents($songlist, json_encode($songs));
     file_put_contents("data/songs.json", json_encode($allsongs));
+    echo "Succesful";
 }
 
 
 
-echo "true";
 
 ?>
-<meta http-equiv="Refresh" content="1; url=index.php">
+<meta http-equiv="Refresh" content="5; url=index.php">
 

@@ -3,6 +3,8 @@ var time;
 var cr = 0;
 var timebar;
 
+
+
 function showSongs(){
     if(document.getElementById("songlist")){
         var table = document.getElementById("songlist");
@@ -34,23 +36,142 @@ function showPlayer(){
     var newTable = document.createElement("table");
     content.appendChild(newTable)
     newTable.setAttribute("class", "songs");
+    newTable.setAttribute("id", "songL");
+
 
 
     for(var i = 0; i<playlists.length; i++){
         var newTr = document.createElement("tr");
         newTable.appendChild(newTr);
-        newTr.setAttribute("onclick", "playing("+i+")")
+        newTr.setAttribute("id", "songDelete")
         var newTd = document.createElement("td");
         newTr.appendChild(newTd);
+
         var img = document.createElement("img");
         newTd.appendChild(img);
         img.src = playlists[i].imgSrc;
         var scndTd = document.createElement("td");
         newTr.appendChild(scndTd);
+        scndTd.setAttribute("onclick", "playing("+i+")")
         scndTd.textContent = playlists[i].name;
+        var edit = document.createElement("img");
+        newTd.appendChild(edit);
+        edit.src="img/edit.png";
+        edit.setAttribute("id", "edit");
+        edit.setAttribute("onclick", "editPlaylist("+i+")");
+        var del = document.createElement("img");
+        newTd.appendChild(del);
+        del.src = "img/delete.png"
+        del.setAttribute("id", "edit");
+        del.setAttribute("onclick", "deletePlaylist("+i+")");
     }
+
+    showSongs();
 }
 
+
+function deletePlaylist(i){
+    window.location = "deleteSong.php?src="+i;
+    return false;
+}
+
+function addSong(){
+    var content = document.getElementById("song-container");
+    content.innerHTML="";
+    var newForm = document.createElement("form");
+    content.appendChild(newForm);
+    newForm.setAttribute("enctype", "multipart/form-data");
+    newForm.setAttribute("action", "addsong.php");
+    newForm.setAttribute("method", "POST");
+    newForm.setAttribute("id","addSong")
+
+    var autor = document.createElement("p");
+    newForm.appendChild(autor);
+    autor.textContent = "Autor";
+    var newInput = document.createElement("input");
+    newForm.appendChild(newInput);
+    newInput.setAttribute("type", "text");
+    newInput.setAttribute("name","autor");
+   
+
+   
+
+    var songname = document.createElement("p");
+    newForm.appendChild(songname);
+    songname.textContent = "Song name";
+    var scndInput = document.createElement("input");
+    newForm.appendChild(scndInput);
+    scndInput.setAttribute("type","text");
+    scndInput.setAttribute("name", "songname")
+    
+
+
+   ;
+
+    var format = document.createElement("p");
+    newForm.appendChild(format);
+    format.textContent ="Select a .mp3 file";
+   
+
+    var sendFile = document.createElement("input");
+    newForm.appendChild(sendFile);
+    sendFile.setAttribute("name","userfile");
+    sendFile.setAttribute("type", "file");
+    
+
+    for (var i = 0; i<playlists.length; i++){
+        var playlistName = document.createElement("p");
+        newForm.appendChild(playlistName);
+        playlistName.textContent = playlists[i].name;
+        playlistName.setAttribute("id", "text");
+
+        var playlist = document.createElement("input");
+        newForm. appendChild(playlist);
+        playlist.setAttribute("type", "radio");
+        playlist.setAttribute("name", "playlist");
+        playlist.setAttribute("value", playlists[i].src);
+    }
+
+    var sendButton = document.createElement("input");
+    newForm.appendChild(sendButton);
+    sendButton.setAttribute("type", "submit");
+    sendButton.setAttribute("name", "submit");
+    sendButton.setAttribute("value","Send");
+   
+}
+
+
+function createPlaylist(){
+    var content = document.getElementById("song-container");
+    content.innerHTML="";
+    var newForm = document.createElement("form");
+    content.appendChild(newForm);
+    newForm.setAttribute("enctype", "multipart/form-data");
+    newForm.setAttribute("action", "createplaylist.php");
+    newForm.setAttribute("method", "POST");
+    newForm.setAttribute("id","addPlaylist")
+    var playlistName = document.createElement("p");
+    newForm.appendChild(playlistName);
+    playlistName.textContent = "Playlist name";
+    var newInput = document.createElement("input");
+    newForm.appendChild(newInput);
+    newInput.setAttribute("type", "text");
+    newInput.setAttribute("name","playlistname");
+
+    var format = document.createElement("p");
+    newForm.appendChild(format);
+    format.textContent = "Select a imatge";
+    var sendFile = document.createElement("input");
+    newForm.appendChild(sendFile);
+    sendFile.setAttribute("name","userfile");
+    sendFile.setAttribute("type", "file");
+    var sendButton = document.createElement("input");
+    newForm.appendChild(sendButton);
+    sendButton.setAttribute("type", "submit");
+    sendButton.setAttribute("name", "submit");
+    sendButton.setAttribute("value","Send");
+    
+}
 
 function showAllSongs(){
     var content = document.getElementById("song-container");
@@ -198,7 +319,6 @@ function next() {
         audio.pause();
         a.src = "img/play.png";
         a.classList = "stop";
-        alert("Select another playlist");
     } else {
         audio.src = song[x].route;
         var autor = document.getElementById("autor");

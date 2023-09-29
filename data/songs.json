@@ -15,78 +15,55 @@
     "songname": "Always Somethere",
     "route": "music\/scorpions\/as.mp3"
 }, {
+    "autor": "Rammstein",
+    "songname": "Deutchland",
+    "route": "music\/rammstein\/d.mp3"
+}, {
+    "autor": "Rammstein",
+    "songname": "Sonne",
+    "route": "music\/rammstein\/s.mp3"
+}, {
+    "autor": "Rammstein",
+    "songname": "Mutter",
+    "route": "music\/rammstein\/m.mp3"
+}, {
+    "autor": "Rammstein",
+    "songname": "Keine lust",
+    "route": "music\/rammstein\/kl.mp3"
+}, {
+    "autor": "System Of A Down",
+    "songname": "Lonley Day",
+    "route": "music\/soad\/ld.mp3"
+}, {
+    "autor": "System Of A Down",
+    "songname": "Toxycity",
+    "route": "music\/soad\/t.mp3"
+}, {
+    "autor": "System Of A Down",
+    "songname": "Question",
+    "route": "music\/soad\/q.mp3"
+}, {
+    "autor": "System Of A Down",
+    "songname": "Aerials",
+    "route": "music\/soad\/a.mp3"
+}, {
+    "autor": "Metallica",
+    "songname": "For Whom The Bell Tolls",
+    "route": "music\/metallica\/f.mp3"
+}, {
+    "autor": "Metallica",
+    "songname": "The Day That Never Comes",
+    "route": "music\/metallica\/t.mp3"
+}, {
+    "autor": "Metallica",
+    "songname": "Enter Sandman",
+    "route": "music\/metallica\/e.mp3"
+}, {
+    "autor": "Metallica",
+    "songname": "Fade To Black",
+    "route": "music\/metallica\/b.mp3"
+}, {
     "autor": "Scorpions",
     "songname": "No one like you",
-    "route": "music\/scorpions\/Scorpions_-_No_One_Like_You.mp3"
-},
-{
-    "autor":"Rammstein",
-    "songname": "Deutchland",
-    "route": "music/rammstein/d.mp3"
-},
-
-{
-    "autor":"Rammstein",
-    "songname": "Sonne",
-    "route": "music/rammstein/s.mp3"
-},
-
-{
-    "autor":"Rammstein",
-    "songname": "Mutter",
-    "route": "music/rammstein/m.mp3"
-},
-
-{
-    "autor":"Rammstein",
-    "songname": "Keine lust",
-    "route": "music/rammstein/kl.mp3"
-},
-{
-    "autor":"System Of A Down",
-    "songname": "Lonley Day",
-    "route": "music/soad/ld.mp3"
-},
-
-{
-    "autor":"System Of A Down",
-    "songname": "Toxycity",
-    "route": "music/soad/t.mp3"
-},
-
-{
-    "autor":"System Of A Down",
-    "songname": "Question",
-    "route": "music/soad/q.mp3"
-},
-
-{
-    "autor":"System Of A Down",
-    "songname": "Aerials",
-    "route": "music/soad/a.mp3"
-},
-{
-    "autor":"Metallica",
-    "songname": "For Whom The Bell Tolls",
-    "route": "music/metallica/f.mp3"
-},
-
-{
-    "autor":"Metallica",
-    "songname": "The Day That Never Comes",
-    "route": "music/metallica/t.mp3"
-},
-
-{
-    "autor":"Metallica",
-    "songname": "Enter Sandman",
-    "route": "music/metallica/e.mp3"
-},
-
-{
-    "autor":"Metallica",
-    "songname": "Fade To Black",
-    "route": "music/metallica/b.mp3"
-}
-
-]
+    "route": "music\/Scorpions_-_No_One_Like_You.mp3"
+}]

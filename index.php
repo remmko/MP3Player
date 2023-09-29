@@ -1,7 +1,12 @@
 <?php
-    include "test.php";
     $allsongs = file_get_contents("data/songs.json");
     $playlists = file_get_contents("data/playlists.json");
+    $currentPlaylist = "[]";
+    
+    if(isset($_GET["src"])) {
+        $song = $_GET["src"];
+        $currentPlaylist = file_get_contents($song);
+    }
     
 ?>
 
@@ -19,12 +24,11 @@
 <body class=container>
     <div class="mainmenu">
         <ul>
-            <li>Player</li>
-            <li>About It</li>
-            <li>Contact</li>
+            <li>Hello!</li>
+            <li> </li>
+            <li> </li>
         </ul>
     </div>
-    <div class="hidden"></div>
 
     <div class="content">
         <div id="song-container">
@@ -41,8 +45,8 @@
         <ul>
             <li onclick="playAllSongs()">AllSongs</li>
             <li onclick="showPlayer()">Playlists</li>
-            <li><a href="newsong.html">Add new song</a></li>
-            <li>Somthing</li>
+            <li onclick="addSong()">Add new song</li>
+            <li onclick="createPlaylist()">Create playlist</li>
         </ul>
     </div>
 
@@ -65,7 +69,7 @@
 
             <div class="volume">
                 <img src="img/volume.png" id="mute" alt="" onclick="mute()">
-                <input type="range" id="volume" max="10" value="10" onclick="volume()">
+                <input type="range" id="volume" max="10" value="5" onclick="volume()">
             </div>
 
             <div id="timebar">
@@ -79,40 +83,34 @@
 
    
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
 
         var audio = new Audio();
         audio.preload = "auto";
-        let playlists;
-        let song;
+        let playlists=<?php echo $playlists?>;
+        let song = <?php echo $currentPlaylist?>;
 
-        window.addEventListener('load', () => {
-            playlists = JSON.parse(<?php echo json_encode($playlists)?>);
+        showPlayer();
+        window.addEventListener('DOMContentLoader', () => {
             showPlayer();
         });
 
-
+        
         function playing(i) {
             var src = playlists[i].src;
-            $.ajax({
-                type: 'GET',              
-                url: 'test.php?src=' + src, 
-                success: function(data) {
-                }
-            });
-
-            song = JSON.parse(<?php include "test.php"; echo json_encode($song)?>);
+            window.location = "index.php?src="+src;
+            showSong();
 
         }
         
         
     
         function playAllSongs(){
-            song = JSON.parse(<?php echo json_encode($allsongs)?>);
+            song = <?php echo $allsongs?>;
             showAllSongs()
-
+            
         }
+
     </script>
 </body>
 </html>
