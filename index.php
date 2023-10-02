@@ -18,6 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" type="image/x-icon" href="img/icon.png">
     <script src="app/app.js"></script>
     <title>Juckbox</title>
 </head>
@@ -43,7 +44,7 @@
 
     <div class="navigation">
         <ul>
-            <li onclick="playAllSongs()">AllSongs</li>
+            <li onclick="playAllSongs()">All Songs</li>
             <li onclick="showPlayer()">Playlists</li>
             <li onclick="addSong()">Add new song</li>
             <li onclick="createPlaylist()">Create playlist</li>
@@ -62,9 +63,9 @@
         
         <div id="playercontent">
             <div class="playcontrol">
-                <img src="img/left.png" alt=""  onclick="back()" class="controls">
+                <img src="img/left.png" alt=""  id="back" onclick="back()" class="controls">
                 <img src="img/play.png" alt="" onclick="play()" id="pp" class="stop">
-                <img src="img/right.png" alt="" onclick="next()" class="controls">
+                <img src="img/right.png" alt="" id="next" onclick="next()" class="controls">
             </div>
 
             <div class="volume">

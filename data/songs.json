@@ -62,8 +62,4 @@
     "autor": "Metallica",
     "songname": "Fade To Black",
     "route": "music\/metallica\/b.mp3"
-}, {
-    "autor": "Scorpions",
-    "songname": "No one like you",
-    "route": "music\/Scorpions_-_No_One_Like_You.mp3"
 }]

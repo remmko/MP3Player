@@ -3,7 +3,7 @@ var time;
 var cr = 0;
 var timebar;
 
-
+var currentIndex = 0;
 
 function showSongs(){
     if(document.getElementById("songlist")){
@@ -70,9 +70,76 @@ function showPlayer(){
 }
 
 
+function editPlaylist(i){
+   currentIndex = i;
+    var content = document.getElementById("song-container");
+    content.innerHTML="";
+    img = document.createElement("img");
+    content.appendChild(img);
+    img.src = playlists[i].imgSrc;
+    img.setAttribute("id","editImg");
+      if(document.getElementById("songlist")){
+        var table = document.getElementById("songlist");
+        table.remove();
+    }
+    
+    var newTable = document.createElement("table");
+    content.appendChild(newTable);
+    newTable.setAttribute("id", "songlist");
+
+
+    for(var i = 0; i < song.length; i++){
+        var newLine = document.createElement("tr");
+        newTable.appendChild(newLine);
+       
+        var songname = document.createElement("td");
+        songname.textContent = song[i].songname;
+        songname.setAttribute("id", i);
+        songname.setAttribute("onclick","select("+i+")")
+        newLine.appendChild(songname);    
+        var del = document.createElement("img");
+        newLine.appendChild(del);
+        del.src = "img/delete.png"
+        del.setAttribute("id", "delete2");
+        del.setAttribute("onclick", "deletefromplaylist("+i+")");
+    }
+
+
+    
+
+}
+
+function deleteSong(i){
+    var result = confirm("Delete "+song[i].autor+" "+song[i].songname+" from anythere?");
+    if(result){
+        window.location="deleteSongFromAll.php?index="+i;
+        return false;
+    }else{
+        alert("Canceling");
+    }
+}
+
+function deletefromplaylist(i){
+    var result = confirm("Delete "+song[i].autor+" "+song[i].songname+" from playlist?");
+    if(result){
+        window.location="deleteSong.php?index="+i+"&currentPlaylist="+playlists[currentIndex].src;
+        return false;
+    }else{
+        alert("Canceling");
+    }
+   
+}
+
+
 function deletePlaylist(i){
-    window.location = "deleteSong.php?src="+i;
-    return false;
+    var result = confirm("Are you sure?")
+    if (result == true){
+        window.location = "deletePlaylist.php?src="+i;
+        return false;
+    }else{
+        alert("Canceling");
+    }
+    
 }
 
 function addSong(){
@@ -173,6 +240,7 @@ function createPlaylist(){
     
 }
 
+
 function showAllSongs(){
     var content = document.getElementById("song-container");
     content.innerHTML="";
@@ -199,11 +267,66 @@ function showAllSongs(){
         newTr.appendChild(newTd);
         newTd.textContent = song[i].songname;
         newTd.setAttribute("onclick","select("+i+")");
+        var add = document.createElement("img");
+        newTr.appendChild(add);
+        add.src = "img/add.png"
+        add.setAttribute("id", "delete2");
+        add.setAttribute("onclick", "showtoadd("+i+")");
+        var del = document.createElement("img");
+        newTr.appendChild(del);
+        del.src = "img/delete.png"
+        del.setAttribute("id", "delete2");
+        del.setAttribute("onclick", "deleteSong("+i+")");
     }
 
     content.setAttribute("style","justify-content: center;")
 }
 
+
+function showtoadd(i){
+    currentIndex = i;
+    var content = document.getElementById("song-container");
+    content.innerHTML="";
+
+    var text = document.createElement("p");
+    content.appendChild(text);
+    text.textContent = "Select playlist: ";
+
+    var newTable = document.createElement("table");
+    content.appendChild(newTable);
+    newTable.setAttribute("class", "songs");
+
+
+    for(var e = 0; e<playlists.length; e++){
+        var newTr = document.createElement("tr");
+        newTable.appendChild(newTr);
+        newTr.setAttribute("id", "songDelete")
+        var newTd = document.createElement("td");
+        newTr.appendChild(newTd);
+
+        var img = document.createElement("img");
+        newTd.appendChild(img);
+        img.src = playlists[e].imgSrc;
+        var scndTd = document.createElement("td");
+        newTr.appendChild(scndTd);
+        scndTd.setAttribute("onclick", "addtoplaylist("+e+")");
+        scndTd.textContent = playlists[e].name;
+    }    
+}
+
+
+function addtoplaylist(e){
+    result = confirm("Do you want to add "+song[currentIndex].autor +
+    "  "+ song[currentIndex].songname + " to "+playlists[e].name+" playlist?")
+    if(result){
+        window.location = "addtoplaylist.php?songIndex="+currentIndex+"&&playlistIndex="+e;
+        return false;
+    }else{
+        alert("Canceling")
+        window.location="index.php";
+    }
+   
+}
 
 
 function select(s) {
@@ -218,6 +341,26 @@ function select(s) {
 
     a.ClassList == "start";
     a.src = "img/pause.png";
+    
+
+    var next = document.getElementById("next");
+    var back = document.getElementById("back");
+
+    if(x==song.length-1){
+        next.src="img/nonext.png";
+        next.setAttribute("onclick", "0");
+
+    }else{
+        next.src="img/right.png";
+    }
+
+    if(x==0){
+        back.src = "img/noback.png";
+        back.setAttribute("onclick","0");
+    }else{
+        back.src = "img/left.png"
+    }
+
     loaddata();
 }
 
@@ -312,8 +455,29 @@ function play() {
 
 function next() {
     var a = document.getElementById("pp");
+
     x = x + 1;
     cr = 0;
+
+    var next = document.getElementById("next");
+    var back = document.getElementById("back");
+
+    if(x==song.length-1){
+        next.src="img/nonext.png";
+        next.setAttribute("onclick", "0");
+
+    }else{
+        next.src="img/right.png";
+    }
+
+    if(x==0){
+        back.src = "img/noback.png";
+        back.setAttribute("onclick","0");
+    }else{
+        back.src = "img/left.png"
+    }
+
+
 
     if (x >= song.length) {
         audio.pause();
@@ -338,6 +502,25 @@ function back() {
     var a = document.getElementById("pp");
     x = x - 1;
     cr = 0;
+
+    var next = document.getElementById("next");
+    var back = document.getElementById("back");
+
+    if(x==song.length-1){
+        next.src="img/nonext.png";
+        next.setAttribute("onclick", "0");
+
+    }else{
+        next.src="img/right.png";
+    }
+
+    if(x==0){
+        back.src = "img/noback.png";
+        back.setAttribute("onclick","0");
+    }else{
+        back.src = "img/left.png"
+    }
+
 
     if (x < 0) {
         x = 0

@@ -54,8 +54,13 @@
     margin-bottom: 20px;
   }
   
+  #editImg{
+    width: 300px;
+    height: 300px;
+  }
+
   .songs {
-    flex-basis: calc(50% - 10px); /* Разделите контейнер на две колонки с отступом */
+    flex-basis: calc(50% - 10px); 
     padding: 10px;
   }
   
@@ -96,6 +101,12 @@
     width: 20px;
     height: 20px;
     display: none;
+  }
+  
+
+  #delete2{
+    width: 20px;
+    height: 20px;
   }
 
   .songs td:hover #edit{
@@ -146,7 +157,7 @@
     font-weight: bold;
   }
   
-  /* Плеер */
+  /* Player */
   .player {
     background-color:#2b2a2a;
     padding: 20px;
@@ -218,32 +229,11 @@
     color: white;
   }
   
-  /* Responsive */
-  @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
-    .mainmenu ul,
-    .navigation ul {
-      flex-direction: column;
-      align-items: center;
-    }
-    .mainmenu li,
-    .navigation li {
-      margin: 10px 0;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .songs td {
-      font-size: 14px;
-    }
-  }
-  
+ 
 
   /* Form Style */
 #addSong {
-  max-width: 400px;
+  width: 750px;
   margin: 0 auto;
   background-color: #2b2a2a;
   padding: 20px;
@@ -301,7 +291,6 @@
   background-color: #0056b3;
 }
 
-/* Стили для радиокнопок и меток */
 .radio-group {
   display: flex;
   flex-direction: column;
@@ -366,4 +355,28 @@
 
 #addPlaylist input[type="submit"]:hover {
   background-color: #0056b3;
+}
+
+
+
+
+@media (max-width: 1000px) {
+
+  *{
+    padding: 0;
+    margin: 0;
+  }
+
+
+  .container{
+    width: 100%;
+  }
+
+  .song{
+    width: 100%;
+  }
+  .songs td {
+    font-size: 14px;
+    width: 100%;
+  }
 }

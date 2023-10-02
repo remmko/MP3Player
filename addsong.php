@@ -36,5 +36,5 @@ if (isset($_FILES) && $_FILES["userfile"]["error"]== UPLOAD_ERR_OK){
 
 
 ?>
-<meta http-equiv="Refresh" content="5; url=index.php">
+<meta http-equiv="Refresh" content="2; url=index.php">
 

@@ -1,21 +1,18 @@
 <?php
-
-    if(isset($_GET["src"])) {
-        $temp = $_GET["src"];
-        $index = $temp;
+$temp = "";
+    if(isset($_GET["index"])&&isset($_GET["currentPlaylist"])) {
+        $index = $_GET["index"];
+        $temp =  $_GET["currentPlaylist"];
     }
 
-$playlist = json_decode(file_get_contents("data/playlists.json"),true);
 
-$dir = $playlist[$index]["src"];
-$img =$playlist[$index]["imgSrc"];
+$currentPlaylist = json_decode(file_get_contents($temp), true);
 
-unlink($dir);
-unlink($img);
 
-unset($playlist[$index]);
 
-file_put_contents("data/playlists.json", json_encode($playlist));
+unset($currentPlaylist[$index]);
+
+file_put_contents($temp, json_encode($currentPlaylist));
 echo "Succesful";
 
 ?>    
