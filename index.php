@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $allsongs = file_get_contents("data/songs.json");
     $playlists = file_get_contents("data/playlists.json");
     $currentPlaylist = "[]";
@@ -7,6 +8,17 @@
         $song = $_GET["src"];
         $currentPlaylist = file_get_contents($song);
     }
+
+    if(isset($_GET["username"])){
+        $_SESSION["user"]= $_GET["username"];
+    }
+
+
+    if(isset($_GET["logout"])){
+        session_unset();
+    }
+
+
     
 ?>
 
@@ -25,9 +37,40 @@
 <body class=container>
     <div class="mainmenu">
         <ul>
-            <li>Hello!</li>
-            <li> </li>
-            <li> </li>
+            <li id="auth">
+                <?php
+                    if(isset($_SESSION["user"])){
+                        echo 'Hello';
+                    }
+                ?>    
+            </li>
+
+
+            <li>
+
+                <?php 
+                    if(isset($_SESSION["user"])){
+                        echo $_SESSION["user"]."!";
+                    }
+                ?>
+
+            </li>
+
+            <li>
+            <?php
+                    if(!isset($_SESSION["user"])){
+                        echo ' <form method="GET" id = "hideLog" action= "index.php">
+                        <input type="text" name = "username" placeholder = "type you name">
+                        <input type="submit" value="Log in">
+                        </form>';
+                    }else{
+                        echo ' <form action="index.php">
+                        <input type="submit" name = "logout" value="Log out">
+                        </form>';
+                    }
+                ?> 
+        
+            </li>
         </ul>
     </div>
 

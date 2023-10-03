@@ -25,7 +25,8 @@ function showSongs(){
         songname.textContent = song[i].songname;
         songname.setAttribute("id", i);
         songname.setAttribute("onclick","select("+i+")")
-        newLine.appendChild(songname);    
+        newLine.appendChild(songname);  
+        
     }      
 }
 
@@ -108,6 +109,8 @@ function editPlaylist(i){
     
 
 }
+
+
 
 function deleteSong(i){
     var result = confirm("Delete "+song[i].autor+" "+song[i].songname+" from anythere?");
@@ -332,6 +335,7 @@ function addtoplaylist(e){
 function select(s) {
     x = s; 
     audio.src = song[x].route
+    audio.volume = 0.5;
 
     var autor = document.getElementById("autor");
     autor.textContent = (song[x].autor);
@@ -438,6 +442,7 @@ function volume() {
 
 
 function play() {
+    audio.volume = 0.5;
     var a = document.getElementById("pp");
     if (a.classList == "stop") {
         loaddata();
