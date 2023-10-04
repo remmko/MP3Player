@@ -1,8 +1,10 @@
 <?php
+    $src = "data/playlists.json";
     session_start();
     $allsongs = file_get_contents("data/songs.json");
     $playlists = file_get_contents("data/playlists.json");
     $currentPlaylist = "[]";
+    $cookieCount[$src];
 
     if(isset($_COOKIE["cookieCount"])){
         $cookieCount = json_decode($_COOKIE["cookieCount"], true);
