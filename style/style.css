@@ -306,6 +306,10 @@ a {
   margin-bottom: 5px;
 }
 
+#moreinfo{
+  padding-right: 60%;
+}
+
 #addPlaylist input[type="text"],
 #addPlaylist input[type="file"],
 #addPlaylist input[type="submit"] {
@@ -335,6 +339,42 @@ a {
   background-color: #0056b3;
 }
 
+
+
+
+#infoTable {
+  color: wheat;
+  font-weight: bold;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+#infoTable th {
+  background-color: #333; 
+  color: wheat; 
+  text-align: left;
+  padding: 10px;
+}
+
+#infoTable td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  text-align: left;
+}
+
+#infoTable img {
+  max-width: 100%;
+  height: auto;
+}
+
+#infoTable tr:nth-child(even) {
+  background-color: #333; 
+}
+
+
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
   .mainmenu ul {
@@ -342,6 +382,9 @@ a {
     align-items: center;
   }
 
+  #moreinfo{
+    padding-right: 0px;
+  }
   .mainmenu li {
     margin-right: 0;
     margin-bottom: 10px;
@@ -403,5 +446,10 @@ a {
 @media screen and (max-width:470px) {
   .volume{
       display: none;
+      
+  }
+
+  #moreinfo{
+    padding-right: 0;
   }
 }

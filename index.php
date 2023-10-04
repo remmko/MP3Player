@@ -3,6 +3,11 @@
     $allsongs = file_get_contents("data/songs.json");
     $playlists = file_get_contents("data/playlists.json");
     $currentPlaylist = "[]";
+
+    if(isset($_COOKIE["cookieCount"])){
+        $cookieCount = json_decode($_COOKIE["cookieCount"], true);
+    }
+    
     
     if(isset($_GET["src"])) {
         $song = $_GET["src"];
@@ -19,6 +24,16 @@
     }
 
 
+    if(isset($_GET["src"])) {
+        $src = $_GET["src"];
+        $cookieCount[$src] = $cookieCount[$src]+1;
+        setcookie("cookieCount", json_encode($cookieCount), time()+3600);
+
+    }else{
+        $src = json_decode($playlists,true )[0]["src"];
+        $cookieCount[$src] = $cookieCount[$src]+1;
+        setcookie("cookieCount", json_encode($cookieCount), time()+3600);
+    }
     
 ?>
 
@@ -37,6 +52,7 @@
 <body class=container>
     <div class="mainmenu">
         <ul>
+            <li id ="moreinfo" onclick="moreinfo()">More information</li>
             <li id="auth">
                 <?php
                     if(isset($_SESSION["user"])){
@@ -128,7 +144,7 @@
    
     
     <script type="text/javascript">
-
+        var cookieCount = <?php echo $_COOKIE["cookieCount"]?>;
         var audio = new Audio();
         audio.preload = "auto";
         let playlists=<?php echo $playlists?>;
@@ -154,6 +170,40 @@
             showAllSongs()
             
         }
+
+        function moreinfo(){
+        var content = document.getElementById("song-container")
+        content.innerHTML="";
+        var newTable = document.createElement("table");
+        content.appendChild(newTable);
+        newTable.setAttribute("id", "infoTable");
+        var newTr = document.createElement("tr");
+        newTable.appendChild(newTr);
+        var empty = document.createElement("th");
+        newTr.appendChild(empty);
+        var newTh = document.createElement("th")
+        newTr.appendChild(newTh);
+        newTh.textContent="Playlist name";
+        var scndTh = document.createElement("th");
+        newTr.appendChild(scndTh);
+        scndTh.textContent = "Plays";
+        for(var i = 0; i<playlists.length; i++){
+            var scndTr = document.createElement("tr");
+            newTable.appendChild(scndTr);
+            var newTd = document.createElement("td");
+            scndTr.appendChild(newTd);
+            var img = document.createElement("img");
+            newTd.appendChild(img);
+            img.src = playlists[i].imgSrc;
+            img.setAttribute("style", "width: 100px; height: 100px");
+            var scndTd = document.createElement("td");
+            scndTr.appendChild(scndTd);
+            scndTd.textContent=playlists[i].name;
+            var trdTd = document.createElement("td");
+            scndTr.appendChild(trdTd);
+            trdTd.textContent= cookieCount[playlists[i].src];
+        }
+}
 
     </script>
 </body>
