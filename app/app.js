@@ -31,46 +31,6 @@ function showSongs(){
 }
 
 
-function showPlayer(){
-    var content = document.getElementById("song-container");
-    content.innerHTML="";
-    var newTable = document.createElement("table");
-    content.appendChild(newTable)
-    newTable.setAttribute("class", "songs");
-    newTable.setAttribute("id", "songL");
-
-
-
-    for(var i = 0; i<playlists.length; i++){
-        var newTr = document.createElement("tr");
-        newTable.appendChild(newTr);
-        newTr.setAttribute("id", "songDelete")
-        var newTd = document.createElement("td");
-        newTr.appendChild(newTd);
-
-        var img = document.createElement("img");
-        newTd.appendChild(img);
-        img.src = playlists[i].imgSrc;
-        var scndTd = document.createElement("td");
-        newTr.appendChild(scndTd);
-        scndTd.setAttribute("onclick", "playing("+i+")")
-        scndTd.textContent = playlists[i].name;
-        var edit = document.createElement("img");
-        newTd.appendChild(edit);
-        edit.src="img/edit.png";
-        edit.setAttribute("id", "edit");
-        edit.setAttribute("onclick", "editPlaylist("+i+")");
-        var del = document.createElement("img");
-        newTd.appendChild(del);
-        del.src = "img/delete.png"
-        del.setAttribute("id", "edit");
-        del.setAttribute("onclick", "deletePlaylist("+i+")");
-    }
-
-    showSongs();
-}
-
-
 function editPlaylist(i){
    currentIndex = i;
     var content = document.getElementById("song-container");
@@ -270,19 +230,32 @@ function showAllSongs(){
         newTr.appendChild(newTd);
         newTd.textContent = song[i].songname;
         newTd.setAttribute("onclick","select("+i+")");
+
         var add = document.createElement("img");
         newTr.appendChild(add);
         add.src = "img/add.png"
         add.setAttribute("id", "delete2");
         add.setAttribute("onclick", "showtoadd("+i+")");
+
         var del = document.createElement("img");
         newTr.appendChild(del);
         del.src = "img/delete.png"
         del.setAttribute("id", "delete2");
         del.setAttribute("onclick", "deleteSong("+i+")");
+
+        var down = document.createElement("img");
+        newTr.appendChild(down);
+        down.src = "img/download.png"
+        down.setAttribute("id", "download");
+        down.setAttribute("onclick", "download("+i+")");
     }
 
     content.setAttribute("style","justify-content: center;")
+}
+
+function download(i){
+    window.location="download.php?src="+song[i].route+"&&id="+i;
+    return false;
 }
 
 

@@ -1,10 +1,14 @@
 <?php
-    $src = "data/playlists.json";
+
     session_start();
     $allsongs = file_get_contents("data/songs.json");
     $playlists = file_get_contents("data/playlists.json");
     $currentPlaylist = "[]";
-    $cookieCount[$src];
+    $src = "data/metalica.json";
+    $cookieCount[$src] = 0;
+
+   
+
 
     if(isset($_COOKIE["cookieCount"])){
         $cookieCount = json_decode($_COOKIE["cookieCount"], true);
@@ -32,8 +36,7 @@
         setcookie("cookieCount", json_encode($cookieCount), time()+3600);
 
     }else{
-        $src = json_decode($playlists,true )[0]["src"];
-        $cookieCount[$src] = $cookieCount[$src]+1;
+       
         setcookie("cookieCount", json_encode($cookieCount), time()+3600);
     }
     
@@ -146,7 +149,7 @@
    
     
     <script type="text/javascript">
-        var cookieCount = <?php echo $_COOKIE["cookieCount"]?>;
+       
         var audio = new Audio();
         audio.preload = "auto";
         let playlists=<?php echo $playlists?>;
@@ -155,8 +158,49 @@
         showPlayer();
         window.addEventListener('DOMContentLoader', () => {
             showPlayer();
+
         });
 
+
+        function showPlayer(){
+            song = <?php echo $currentPlaylist?>;
+            var content = document.getElementById("song-container");
+            content.innerHTML="";
+            var newTable = document.createElement("table");
+            content.appendChild(newTable)
+            newTable.setAttribute("class", "songs");
+            newTable.setAttribute("id", "songL");
+
+
+
+            for(var i = 0; i<playlists.length; i++){
+                var newTr = document.createElement("tr");
+                newTable.appendChild(newTr);
+                newTr.setAttribute("id", "songDelete")
+                var newTd = document.createElement("td");
+                newTr.appendChild(newTd);
+
+                var img = document.createElement("img");
+                newTd.appendChild(img);
+                img.src = playlists[i].imgSrc;
+                var scndTd = document.createElement("td");
+                newTr.appendChild(scndTd);
+                scndTd.setAttribute("onclick", "playing("+i+")")
+                scndTd.textContent = playlists[i].name;
+                var edit = document.createElement("img");
+                newTd.appendChild(edit);
+                edit.src="img/edit.png";
+                edit.setAttribute("id", "edit");
+                edit.setAttribute("onclick", "editPlaylist("+i+")");
+                var del = document.createElement("img");
+                newTd.appendChild(del);
+                del.src = "img/delete.png"
+                del.setAttribute("id", "edit");
+                del.setAttribute("onclick", "deletePlaylist("+i+")");
+            }
+
+            showSongs();
+        }
         
         function playing(i) {
             var src = playlists[i].src;
@@ -164,6 +208,7 @@
             showSong();
 
         }
+        
         
         
     
@@ -189,6 +234,11 @@
         var scndTh = document.createElement("th");
         newTr.appendChild(scndTh);
         scndTh.textContent = "Plays";
+        var cookieCount = <?php if (isset($_COOKIE["cookieCount"])){
+            echo $_COOKIE["cookieCount"];
+            }else{
+                echo "1";
+            } ?>;
         for(var i = 0; i<playlists.length; i++){
             var scndTr = document.createElement("tr");
             newTable.appendChild(scndTr);
