@@ -1,45 +1,51 @@
 <?php
 
+
+$_SERVER['HTTP_RANGE'] = "bytes:0-100485759000000";
+
+    // Start or resume a session
     session_start();
+
+    // Read the contents of the "songs.json" and "playlists.json" files and store them as strings
     $allsongs = file_get_contents("data/songs.json");
     $playlists = file_get_contents("data/playlists.json");
-    $currentPlaylist = "[]";
-    $src = "data/metalica.json";
-    $cookieCount[$src] = 0;
 
-   
+    // Initialize variables
+    $currentPlaylist = "[]"; // Empty JSON array
+    $src = "data/metalica.json"; // Default source file
+    $cookieCount[$src] = 0; // Initialize a cookie count for the default source
 
-
+    // Check if a cookie named "cookieCount" exists, and if so, decode it into an associative array
     if(isset($_COOKIE["cookieCount"])){
         $cookieCount = json_decode($_COOKIE["cookieCount"], true);
     }
-    
-    
+
+    // If the "src" parameter is set in the URL, update the $song and $currentPlaylist variables
     if(isset($_GET["src"])) {
         $song = $_GET["src"];
         $currentPlaylist = file_get_contents($song);
     }
 
+    // If the "username" parameter is set in the URL, store it in the session as "user"
     if(isset($_GET["username"])){
         $_SESSION["user"]= $_GET["username"];
     }
 
-
+    // If the "logout" parameter is set in the URL, unset the session
     if(isset($_GET["logout"])){
         session_unset();
     }
 
-
+    // If the "src" parameter is set in the URL, update the $src and $cookieCount variables,
+    // and set a cookie named "cookieCount" with the updated $cookieCount array
     if(isset($_GET["src"])) {
         $src = $_GET["src"];
         $cookieCount[$src] = $cookieCount[$src]+1;
         setcookie("cookieCount", json_encode($cookieCount), time()+3600);
-
-    }else{
-       
+    } else {
+        // If "src" is not set, set a cookie named "cookieCount" with the current $cookieCount array
         setcookie("cookieCount", json_encode($cookieCount), time()+3600);
     }
-    
 ?>
 
 
@@ -150,77 +156,89 @@
     
     <script type="text/javascript">
        
+        // Create an Audio object for playing music
         var audio = new Audio();
         audio.preload = "auto";
-        let playlists=<?php echo $playlists?>;
-        let song = <?php echo $currentPlaylist?>;
 
+        // Initialize playlists and currentPlaylist variables using PHP data
+        let playlists = <?php echo $playlists ?>;
+        let song = <?php echo $currentPlaylist ?>;
+
+        // Call the showPlayer function and add an event listener when the DOM is loaded
         showPlayer();
-        window.addEventListener('DOMContentLoader', () => {
+        window.addEventListener('DOMContentLoaded', () => {
             showPlayer();
-
         });
 
-
-        function showPlayer(){
-            song = <?php echo $currentPlaylist?>;
-            var content = document.getElementById("song-container");
-            content.innerHTML="";
-            var newTable = document.createElement("table");
-            content.appendChild(newTable)
-            newTable.setAttribute("class", "songs");
-            newTable.setAttribute("id", "songL");
-
-
-
-            for(var i = 0; i<playlists.length; i++){
-                var newTr = document.createElement("tr");
-                newTable.appendChild(newTr);
-                newTr.setAttribute("id", "songDelete")
-                var newTd = document.createElement("td");
-                newTr.appendChild(newTd);
-
-                var img = document.createElement("img");
-                newTd.appendChild(img);
-                img.src = playlists[i].imgSrc;
-                var scndTd = document.createElement("td");
-                newTr.appendChild(scndTd);
-                scndTd.setAttribute("onclick", "playing("+i+")")
-                scndTd.textContent = playlists[i].name;
-                var edit = document.createElement("img");
-                newTd.appendChild(edit);
-                edit.src="img/edit.png";
-                edit.setAttribute("id", "edit");
-                edit.setAttribute("onclick", "editPlaylist("+i+")");
-                var del = document.createElement("img");
-                newTd.appendChild(del);
-                del.src = "img/delete.png"
-                del.setAttribute("id", "edit");
-                del.setAttribute("onclick", "deletePlaylist("+i+")");
-            }
-
-            showSongs();
-        }
+// Function to display playlists in the player section
+    function showPlayer() {
+        // Retrieve currentPlaylist data using PHP
+        song = <?php echo $currentPlaylist ?>;
         
-        function playing(i) {
-            var src = playlists[i].src;
-            window.location = "index.php?src="+src;
-            showSong();
+        // Clear the song-container element
+        var content = document.getElementById("song-container");
+        content.innerHTML = "";
 
-        }
-        
-        
-        
-    
-        function playAllSongs(){
-            song = <?php echo $allsongs?>;
-            showAllSongs()
-            
+        // Create a new table element for displaying playlists
+        var newTable = document.createElement("table");
+        content.appendChild(newTable);
+        newTable.setAttribute("class", "songs");
+        newTable.setAttribute("id", "songL");
+
+        // Loop through playlists data and create table rows for each playlist
+        for (var i = 0; i < playlists.length; i++) {
+            var newTr = document.createElement("tr");
+            newTable.appendChild(newTr);
+            newTr.setAttribute("id", "songDelete");
+
+            var newTd = document.createElement("td");
+            newTr.appendChild(newTd);
+
+            // Create an image element for the playlist thumbnail
+            var img = document.createElement("img");
+            newTd.appendChild(img);
+            img.src = playlists[i].imgSrc;
+
+            var scndTd = document.createElement("td");
+            newTr.appendChild(scndTd);
+            scndTd.setAttribute("onclick", "playing(" + i + ")");
+            scndTd.textContent = playlists[i].name;
+
+            // Create edit and delete buttons for each playlist
+            var edit = document.createElement("img");
+            newTd.appendChild(edit);
+            edit.src = "img/edit.png";
+            edit.setAttribute("id", "edit");
+            edit.setAttribute("onclick", "editPlaylist(" + i + ")");
+
+            var del = document.createElement("img");
+            newTd.appendChild(del);
+            del.src = "img/delete.png"
+            del.setAttribute("id", "edit");
+            del.setAttribute("onclick", "deletePlaylist(" + i + ")");
         }
 
-        function moreinfo(){
-        var content = document.getElementById("song-container")
-        content.innerHTML="";
+        // Call the showSongs function
+        showSongs();
+    }
+
+// Function to play a playlist when clicked
+    function playing(i) {
+        var src = playlists[i].src;
+        window.location = "index.php?src=" + src;
+        showSong();
+    }
+
+// Function to play all songs
+    function playAllSongs() {
+        song = <?php echo $allsongs ?>;
+        showAllSongs();
+    }
+
+// Function to display more information
+    function moreinfo() {
+        var content = document.getElementById("song-container");
+        content.innerHTML = "";
         var newTable = document.createElement("table");
         content.appendChild(newTable);
         newTable.setAttribute("id", "infoTable");
@@ -230,16 +248,12 @@
         newTr.appendChild(empty);
         var newTh = document.createElement("th")
         newTr.appendChild(newTh);
-        newTh.textContent="Playlist name";
+        newTh.textContent = "Playlist name";
         var scndTh = document.createElement("th");
         newTr.appendChild(scndTh);
         scndTh.textContent = "Plays";
-        var cookieCount = <?php if (isset($_COOKIE["cookieCount"])){
-            echo $_COOKIE["cookieCount"];
-            }else{
-                echo "1";
-            } ?>;
-        for(var i = 0; i<playlists.length; i++){
+        var cookieCount = <?php if (isset($_COOKIE["cookieCount"])) { echo $_COOKIE["cookieCount"]; } else { echo "1"; } ?>;
+        for (var i = 0; i < playlists.length; i++) {
             var scndTr = document.createElement("tr");
             newTable.appendChild(scndTr);
             var newTd = document.createElement("td");
@@ -250,12 +264,13 @@
             img.setAttribute("style", "width: 100px; height: 100px");
             var scndTd = document.createElement("td");
             scndTr.appendChild(scndTd);
-            scndTd.textContent=playlists[i].name;
+            scndTd.textContent = playlists[i].name;
             var trdTd = document.createElement("td");
             scndTr.appendChild(trdTd);
-            trdTd.textContent= cookieCount[playlists[i].src];
+            trdTd.textContent = cookieCount[playlists[i].src];
         }
-}
+    }
+
 
     </script>
 </body>

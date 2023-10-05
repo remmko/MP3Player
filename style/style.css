@@ -76,7 +76,8 @@ body {
 }
 
 .songs img {
-  width: 100%;
+  width: 150px;
+  height: 150px;
   max-width: 150px;
   border-radius: 5px;
   transition: transform 0.3s ease;
@@ -395,6 +396,10 @@ a {
     align-items: center;
   }
 
+  *{
+    font-size: 13px;
+  }
+
   #moreinfo{
     padding-right: 0px;
   }
@@ -410,6 +415,11 @@ a {
   .songs {
     flex-basis: 100%;
     margin-bottom: 10px;
+  }
+
+  .songs img{
+    width: 80px;
+    height: 80px;
   }
 
   .songs td {

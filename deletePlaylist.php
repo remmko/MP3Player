@@ -1,22 +1,21 @@
 <?php
+if(isset($_GET["src"])) {
+    $temp = $_GET["src"]; // Get the source (file path) of the playlist to be deleted.
+    $index = $temp; // Assign the source to the index.
+}
 
-    if(isset($_GET["src"])) {
-        $temp = $_GET["src"];
-        $index = $temp;
-    }
+$playlist = json_decode(file_get_contents("data/playlists.json"), true); // Load the playlists data from the "playlists.json" file.
 
-$playlist = json_decode(file_get_contents("data/playlists.json"),true);
+$dir = $playlist[$index]["src"]; // Get the directory path of the playlist.
+$img = $playlist[$index]["imgSrc"]; // Get the image path associated with the playlist.
 
-$dir = $playlist[$index]["src"];
-$img =$playlist[$index]["imgSrc"];
+unlink($dir); // Delete the playlist directory.
+unlink($img); // Delete the associated image.
 
-unlink($dir);
-unlink($img);
+unset($playlist[$index]); // Remove the playlist entry from the playlists data.
 
-unset($playlist[$index]);
+file_put_contents("data/playlists.json", json_encode($playlist)); // Save the updated playlists data back to the "playlists.json" file.
+echo "Successful"; // Display a success message.
+?>
 
-file_put_contents("data/playlists.json", json_encode($playlist));
-echo "Succesful";
-
-?>    
-<meta http-equiv="Refresh" content="2; url=index.php">
+<meta http-equiv="Refresh" content="2; url=index.php"> <!-- This code creates an automatic redirection to the index.php page after 2 seconds following the operation. -->
